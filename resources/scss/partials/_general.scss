@@ -1,0 +1,24 @@
+header, aside{
+    a{
+        text-decoration: none;
+        color: white;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+li{
+    list-style: none;
+    line-height: 30px;
+}
+
+.main-wrapper{
+    height: calc(100vh - 57px);
+
+}
+
+aside{
+    width: 150px;
+    height: 100%;
+}
