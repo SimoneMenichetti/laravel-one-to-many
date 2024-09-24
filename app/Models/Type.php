@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project;
 
 class Type extends Model
 {
@@ -17,4 +18,11 @@ class Type extends Model
         'name',
         'description',
     ];
+
+    // definiamo la relazione con la table projects
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
