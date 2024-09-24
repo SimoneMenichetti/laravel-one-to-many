@@ -1,7 +1,9 @@
 <aside class="text-bg-dark">
     <ul>
-        <li><a href="{{ route('admin.home') }}">home</a></li>
-        <li><a href="{{ route('admin.posts.index') }}">elenco post</a></li>
-        <li><a href=" {{ route('admin.posts.create') }}">nuovo post</a></li>
+        <li><a href="{{ route('admin.home') }}"><i class="fa-solid fa-house"><span class="ms-1">Home</span></i></a></li>
+        <li><a href="{{ route('admin.posts.index') }}"><i class="fa-solid fa-signs-post"><span
+                        class="ms-1">Post</span></i></a></li>
+        <li><a href=" {{ route('admin.posts.create') }}"><i class="fa-solid fa-plus"><span class="ms-1">Nuovo
+                        Post</span></i></a></li>
     </ul>
 </aside>
