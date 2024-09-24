@@ -20,7 +20,7 @@ class PostsSeeder extends Seeder
             $new_post = new Post();
             $new_post->name = $faker->name;
             $new_post->title = $titolo;
-            $new_post->slug = Helper::generateSlug($titolo);
+            $new_post->slug = Helper::generateSlug($titolo, Post::class);
             $new_post->topic = $faker->word;
             $new_post->start_date = $faker->date;
             $new_post->end_date = $faker->optional()->date;
