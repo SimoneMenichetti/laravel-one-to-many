@@ -40,7 +40,7 @@ class PostController extends Controller
         $post = new Post();
         $post->name = auth()->user()->name;
         $post->title = $request->title;
-        $post->slug = Helper::generateSlug($request->title);
+        $post->slug = Helper::generateSlug($request->title, Post::class);
         $post->topic = $request->topic;
         $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;

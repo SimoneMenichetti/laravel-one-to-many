@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Functions; // Usa solo "Functions"
+namespace App\Functions;
 
 use Illuminate\Support\Str;
-use App\Models\Post;
 
-class Helper // Nome della classe con la maiuscola
+class Helper
 {
-    public static function generateSlug($title, $separator = '-')
+    public static function generateSlug($title, $model, $separator = '-')
     {
         $slug = Str::slug($title, $separator);
         $original_slug = $slug;
@@ -16,7 +15,8 @@ class Helper // Nome della classe con la maiuscola
         // Limita la lunghezza dello slug a 250 caratteri
         $slug = substr($slug, 0, 250);
 
-        while (Post::where('slug', $slug)->exists()) {
+        // Controlla se esiste un slug nel modello specificato
+        while ($model::where('slug', $slug)->exists()) {
             $slug = $original_slug . $separator . $counter;
             // Limita la lunghezza dello slug a 250 caratteri
             $slug = substr($slug, 0, 250);
