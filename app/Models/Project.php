@@ -15,6 +15,7 @@ class Project extends Model
     /**
      * Define the relationship with Type.
      */
+
     public function type()
     {
         return $this->belongsTo(Type::class);

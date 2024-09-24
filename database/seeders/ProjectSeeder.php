@@ -16,9 +16,6 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        // recupero i type anche qui per associarli ai project
-        $types = Type::all();
-
         $projects = config('projects');
 
         foreach ($projects as $projectData) {
@@ -26,7 +23,7 @@ class ProjectSeeder extends Seeder
                 'name' => $projectData['name'],
                 'description' => $projectData['description'],
                 'slug' => Helper::generateSlug($projectData['name'], Project::class),
-                'type_id' => $types->random()->id,
+                'type_id' => Type::all()->random()->id,
             ]);
         }
     }
