@@ -23,7 +23,7 @@
                         <td>{{ $project->type ? $project->type->name : 'N/A' }}</td>
                         <td>
                             <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-info">Visualizza</a>
-                            <!-- Aggiungi pulsanti per modificare o eliminare, se necessario -->
+
                         </td>
                     </tr>
                 @endforeach

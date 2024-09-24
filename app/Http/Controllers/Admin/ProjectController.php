@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Type;
+use App\Http\Requests\StoreProjectRequest;
+use App\Functions\Helper;
+use App\Http\Requests\UpdateProjectRequest;
+use Laravel\Prompts\Progress;
 
 class ProjectController extends Controller
 {
@@ -22,15 +27,22 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $types = Type::all();
+        return view('Admin.projects.create', compact('types'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $validatedData['slug'] = Helper::generateSlug($validatedData['name'], Project::class); // Assicurati di avere la tua funzione Helper
+
+        // Crea il progetto usando i dati validati, incluso lo slug
+        Project::create($validatedData);
+
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto creato con successo!');
     }
 
     /**
@@ -45,24 +57,33 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+
+        $validatedData = $request->validated();
+        $validatedData['slug'] = Helper::generateSlug($validatedData['name'], Project::class);
+
+        $project->update($validatedData);
+
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto modificato con successo!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo!');
     }
 }
